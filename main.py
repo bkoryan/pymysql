@@ -19,8 +19,11 @@ def main():
         user=username,
         password=pwd
         )
-        print("mydb connection... ok")
+        print("mydb connection...")
         create_db()
+        del hostname
+        del username
+        del pwd
         mydb.close()
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
