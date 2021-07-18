@@ -1,6 +1,6 @@
-# Mysql-Python Practice - dB Connection
+# Mysql-Python Practice - dB Connection 
 # 15-07-2021 
-# @bkoryan
+# @bkoryan 
 
 import mysql.connector
 import datetime 
@@ -9,8 +9,6 @@ def create_db():
     print("dB creating...")
 
 def main():
-    
-    
     hostname = input("enter hostname:")
     username = input("enter username:")
     pwd = input("enter pass:")
