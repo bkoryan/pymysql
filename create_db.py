@@ -5,11 +5,6 @@
 import mysql.connector
 import datetime 
 
-
-
- 
-
-
 def main():
         
     #hostname = input("enter hostname:")
@@ -37,12 +32,14 @@ def main():
         if pingStatus != None:
             print("PingStatus = ", pingStatus)
         db.execute("use testdb")
-        db.execute("CREATE TABLE if not exists stdnt (name VARCHAR(25),lastname VARCHAR(25),id INT(10) auto_increment,primary key (id),std_id INT(10))")
+        db.execute("CREATE TABLE if not exists stdnt (name VARCHAR(25),lastname VARCHAR(25),id INT(10) auto_increment,primary key (id),std_id INT(10),dateEntry VARCHAR(25),timeEntry VARCHAR(25))")
         mydb.commit()
         
         std_name = input("enter std name:")
         std_lname = input("enter std lastname:")
         std_id = input("enter std id:")
+        dateEntry = datetime.date.today()
+        timeEntry = datetime.datetime.now()
         try:
             std_id = int(std_id)
         except:
@@ -51,8 +48,8 @@ def main():
         if(std_name.isalpha() == False or std_lname.isalpha() == False):
             print("error in std name or lname")
             exit()
-        sql_cmd = "INSERT INTO stdnt (name, lastname,std_id) VALUES (%s, %s,%s)"
-        val = (std_name, std_lname,std_id)
+        sql_cmd = "INSERT INTO stdnt (name, lastname,std_id,dateEntry,timeEntry) VALUES (%s, %s,%s,%s,%s)"
+        val = (std_name, std_lname,std_id,dateEntry,timeEntry)
         db.execute(sql_cmd, val)
         mydb.commit()
         db.execute("SELECT * FROM stdnt")
