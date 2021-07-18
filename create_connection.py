@@ -3,12 +3,14 @@
 # @bkoryan
 
 import mysql.connector
+import datetime 
 def create_db():
-
+    
     print("dB creating...")
 
 def main():
-
+    
+    
     hostname = input("enter hostname:")
     username = input("enter username:")
     pwd = input("enter pass:")
