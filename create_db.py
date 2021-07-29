@@ -49,12 +49,38 @@ def main():
         if(usr_slct.isalpha()==True or int(usr_slct) > 5 or int(usr_slct) < 1):
             print("wrong! Bye")
             exit()
+        elif int(usr_slct) == 1:
+            print("How would like to search an entry?")
+            print("1) by student number?")
+            print("2) by first name?")
+            print("3) by last name?")
+            usr_src_slct = input("Enter:")
+            if(usr_src_slct.isalpha()==True or int(usr_src_slct) > 3 or int(usr_src_slct) < 1):
+                print("wrong! Bye")
+                exit()
+            elif int(usr_src_slct) == 1:
+                src_id = input("enter the student id:")
+                if(src_id.isalpha()==True):
+                    print("wrong entry!")
+                    exit()
+                else:
+                    db.execute("SELECT * FROM stdnt where std_id == src_id")
+            elif int(usr_src_slct) == 2:
+                src_id = input("enter the firstname:")
+            elif int(usr_src_slct) == 3:
+                src_id = input("enter the lastname:")
+
+
+
+        elif int(usr_slct) == 5:
+            print("Goodbye!...")
+            exit()
         elif int(usr_slct) == 2:
             std_name = input("enter std name:")
             std_lname = input("enter std lastname:")
             std_id = input("enter std id:")
             dateEntry = datetime.date.today()
-            #timeEntry = datetime.datetime.now()
+            timeEntry = datetime.datetime.now()
             try:
                 std_id = int(std_id)
             except:
@@ -64,13 +90,14 @@ def main():
                 print("error in std name or lname")
                 exit()
             sql_cmd = "INSERT INTO stdnt (name, lastname,std_id,dateEntry,timeEntry) VALUES (%s, %s,%s,%s,%s)"
-            #val = (std_name, std_lname,std_id,dateEntry,timeEntry)
-            # db.execute(sql_cmd, val)
+            val = (std_name, std_lname,std_id,dateEntry,timeEntry)
+            db.execute(sql_cmd, val)
             mydb.commit()
             db.execute("SELECT * FROM stdnt")
             #print(db.fetchall(),'\n')
         
-            #mydb.close()
+            mydb.close()
+            print("all ok")
             #db.execute("drop database testdb")
     except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err)) 
