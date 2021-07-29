@@ -64,7 +64,7 @@ def main():
                     print("wrong entry!")
                     exit()
                 else:
-                    db.execute("SELECT * FROM stdnt where std_id == src_id")
+                    db.execute("SELECT * FROM stdnt where std_id = @src_id")
             elif int(usr_src_slct) == 2:
                 src_id = input("enter the firstname:")
             elif int(usr_src_slct) == 3:
